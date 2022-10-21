@@ -358,6 +358,7 @@ abstract class DioMixin implements Dio {
     String lengthHeader = Headers.contentLengthHeader,
     data,
     Options? options,
+    append = false,
   }) async {
     throw UnsupportedError('Unsupport download API in browser');
   }
@@ -407,6 +408,7 @@ abstract class DioMixin implements Dio {
     String lengthHeader = Headers.contentLengthHeader,
     data,
     Options? options,
+    append = false,
   }) {
     return download(
       uri.toString(),
@@ -417,6 +419,7 @@ abstract class DioMixin implements Dio {
       cancelToken: cancelToken,
       data: data,
       options: options,
+      append = append,
     );
   }
 
