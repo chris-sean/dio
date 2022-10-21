@@ -72,6 +72,7 @@ class DioForNative with DioMixin implements Dio {
     String lengthHeader = Headers.contentLengthHeader,
     data,
     Options? options,
+    append = false,
   }) async {
     // We set the `responseType` to [ResponseType.STREAM] to retrieve the
     // response stream.
@@ -126,7 +127,7 @@ class DioForNative with DioMixin implements Dio {
     // Shouldn't call file.writeAsBytesSync(list, flush: flush),
     // because it can write all bytes by once. Consider that the
     // file with a very big size(up 1G), it will be expensive in memory.
-    var raf = file.openSync(mode: FileMode.write);
+    var raf = file.openSync(mode: append ? FileMode.append : FileMode.write);
 
     //Create a Completer to notify the success/error state.
     var completer = Completer<Response>();
@@ -289,6 +290,7 @@ class DioForNative with DioMixin implements Dio {
     lengthHeader = Headers.contentLengthHeader,
     data,
     Options? options,
+    append = false,
   }) {
     return download(
       uri.toString(),
@@ -299,6 +301,7 @@ class DioForNative with DioMixin implements Dio {
       cancelToken: cancelToken,
       data: data,
       options: options,
+      append: append,
     );
   }
 }
