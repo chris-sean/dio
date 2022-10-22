@@ -419,7 +419,7 @@ abstract class DioMixin implements Dio {
       cancelToken: cancelToken,
       data: data,
       options: options,
-      append = append,
+      append: append,
     );
   }
 
